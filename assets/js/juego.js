@@ -6,6 +6,16 @@
 let deck = [];
 const types = ['C', 'D', 'H', 'S'];
 const specials = ['A', 'J', 'Q', 'K'];
+let playerPoints = 0;
+let computerPoints = 0;
+
+//buttons
+const btnStop = document.querySelector('#btn-stop');
+const btnPedir = document.querySelector('#btn-pedir');
+const btnNewGame = document.querySelector('#btn-new-game');
+
+//smalls
+const htmlPoints = document.querySelectorAll('small');
 
 //Function to create a new deck
 const crearDeck = () => {
@@ -36,11 +46,15 @@ const takeCard = () => {
 
 const valueOfCard = (card) => {
     let value = card.substring(0, card.length - 1);
-    return (isNaN(value)) ?   value = (value === 'A') ? 11 
-    : 10 :  value = parseInt(value)
+    return (isNaN(value)) ? value = (value === 'A') ? 11
+        : 10 : value = parseInt(value);
 
 
 };
-const value = valueOfCard(takeCard());
-console.log(valor);
-document.getElementsByTagName('small')[0].
+
+btnPedir.addEventListener('click', () => {
+    const card = takeCard();
+    playerPoints = playerPoints + valueOfCard(card);
+    htmlPoints[0].innerHTML = playerPoints;
+
+});
