@@ -11,9 +11,9 @@ let computerPoints = 0;
 
 //buttons
 const btnStop = document.querySelector('#btn-stop');
-const btnPedir = document.querySelector('#btn-pedir');
+const btnGetCard = document.querySelector('#btn-pedir');
 const btnNewGame = document.querySelector('#btn-new-game');
-
+const divPlayerCards = document.querySelector('#jugador-cartas');
 //smalls
 const htmlPoints = document.querySelectorAll('small');
 
@@ -52,9 +52,27 @@ const valueOfCard = (card) => {
 
 };
 
-btnPedir.addEventListener('click', () => {
+const computerTurn = (lomitPoints) => {
+    const computerCard = takeCard()
+};
+
+btnGetCard.addEventListener('click', () => {
     const card = takeCard();
     playerPoints = playerPoints + valueOfCard(card);
     htmlPoints[0].innerHTML = playerPoints;
+    const imgCard = document.createElement('img');
+    imgCard.src = `assets/cartas/${card}.png`;
+    imgCard.classList.add('img-fluid');
+    imgCard.classList.add('cardd');
+    divPlayerCards.append(imgCard);
 
+    if (playerPoints > 21) {
+        console.warn('Lo siento perdiste');
+        btnGetCard.disabled = true;
+    }
+    else if (playerPoints === 21) {
+        console.warn('Ganastee!!');
+        btnGetCard.disabled = true;
+
+    }
 });
