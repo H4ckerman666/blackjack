@@ -14,6 +14,7 @@ const btnStop = document.querySelector('#btn-stop');
 const btnGetCard = document.querySelector('#btn-pedir');
 const btnNewGame = document.querySelector('#btn-new-game');
 const divPlayerCards = document.querySelector('#jugador-cartas');
+const divComputerCards = document.querySelector('#computadora-cartas');
 //smalls
 const htmlPoints = document.querySelectorAll('small');
 
@@ -52,8 +53,23 @@ const valueOfCard = (card) => {
 
 };
 
-const computerTurn = (lomitPoints) => {
-    const computerCard = takeCard()
+const computerTurn = (limitPoints) => {
+    do {
+        const card = takeCard();
+        computerPoints = computerPoints + valueOfCard(card);
+        htmlPoints[1].innerHTML = computerPoints;
+        const imgCard = document.createElement('img');
+        imgCard.src = `assets/cartas/${card}.png`;
+        imgCard.classList.add('img-fluid');
+        imgCard.classList.add('cardd');
+        divComputerCards.append(imgCard);
+    }
+    while ((computerPoints <= limitPoints) && (limitPoints <= 21));
+    setTimeout(() => {
+    (computerPoints === limitPoints ? alert('Nadie gana :(') : (limitPoints > 21 ? alert('La computadora gana') : (computerPoints > 21 ? alert('Jugador Gana') : alert('Computadora gana'))));
+        
+    }, 20);
+
 };
 
 btnGetCard.addEventListener('click', () => {
@@ -69,10 +85,38 @@ btnGetCard.addEventListener('click', () => {
     if (playerPoints > 21) {
         console.warn('Lo siento perdiste');
         btnGetCard.disabled = true;
+        btnStop.disabled = true;
+        computerTurn(playerPoints);
     }
     else if (playerPoints === 21) {
         console.warn('Ganastee!!');
         btnGetCard.disabled = true;
+        btnStop.disabled = true;
+        computerTurn(playerPoints);
+
+
 
     }
 });
+btnStop.addEventListener('click', () => {
+    btnGetCard.disabled = true;
+    btnStop.disabled = true;
+    computerTurn(playerPoints);
+}); 
+
+btnNewGame.addEventListener('click',()=>{
+    console.clear();
+    playerPoints = 0
+    computerPoints = 0
+    htmlPoints[0].innerText = playerPoints;
+    htmlPoints[1].innerText = computerPoints;
+    divComputerCards.innerHTML=''
+    divPlayerCards.innerHTML=''
+    deck=[]
+    crearDeck()
+    btnGetCard.disabled = false;
+    btnStop.disabled = false;
+    
+
+
+})
