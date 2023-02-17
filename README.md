@@ -1,4 +1,5 @@
-# Black Jack 
+# Black Jack
+
 This project was created for practicing JavaScript knowledge, event listeners, query selection, array methods and other things.
 
 ## Utility
@@ -13,8 +14,9 @@ The closest wins
 - JavaScript
 
 ## App language
-Spanish  
-  
+
+Spanish
+
 <br/>
 
-_You can check this project <a href="https://blackj-ack-js.netlify.app/" target="_blank">here</a>_
+_You can check this project <a href="https://blackj-ack-js.netlify.app/" target="_blank" rel="noopener noreferrer">here</a>_
